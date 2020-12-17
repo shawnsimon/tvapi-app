@@ -23,13 +23,17 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchBar(props) {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
+  const [timerId, setTimerId] = useState("");
   const handleSearchClick = () => {
     props.onSearchClick(searchTerm);
   };
 
   const handleTextFieldChange = (e) => {
     setSearchTerm(e.target.value);
+    //setSearchTimeout(() => props.handleOnSearch(e.target.value));
+    setTimeout(() => props.onSearchClick(e.target.value), 1000);
   };
+
   // TODO: Tweak the text box to remove the outline
   return (
     <div>
@@ -54,7 +58,7 @@ export default function SearchBar(props) {
         size="large"
         color="primary"
         className={classes.buttonSearch}
-        onClick={() => handleSearchClick()}
+        onClick={handleSearchClick}
       >
         Search
       </Button>

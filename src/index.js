@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme } from "@material-ui/core/styles";
+import { BrowserRouter } from "react-router-dom";
 
 // Create a theme instance.
 const theme = createMuiTheme({
@@ -68,7 +69,9 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ThemeProvider>,
   document.getElementById("root")
 );

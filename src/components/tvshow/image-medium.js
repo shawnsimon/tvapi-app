@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   img: {
-    height: 250,
     borderRadius: 5,
   },
 }));
@@ -20,6 +19,8 @@ export default function ImageMedium(props) {
     );
   } else {
     // Add a missing image to keep spacing in the list
-    return <img src="" />;
+    return (
+      <img src="noimage.png" alt={props.altText} className={classes.img} />
+    );
   }
 }
