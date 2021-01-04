@@ -5,11 +5,13 @@ import ShowList from "./show-list";
 
 function Search() {
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const handleSearchClick = (searchTerm) => {
     setQuery(searchTerm);
   };
-
-  //
+  const handleLoadingStatus = (status) => {
+    setIsLoading(status);
+  };
 
   return (
     <React.Fragment>
@@ -18,11 +20,12 @@ function Search() {
           placeHolder="Search..."
           queryString="q"
           onSearchClick={handleSearchClick}
+          isLoading={isLoading}
         />
       </Box>
       <Box mt={2} display="flex" justifyContent="center">
         <Box>
-          <ShowList query={query} />
+          <ShowList query={query} setLoadingStatus={handleLoadingStatus} />
         </Box>
       </Box>
     </React.Fragment>

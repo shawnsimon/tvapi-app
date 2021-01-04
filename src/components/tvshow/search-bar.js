@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { TextField, InputAdornment, Button } from "@material-ui/core";
+import { TextField, InputAdornment } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import ButtonSpinner from "../button/button-spinner";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,15 +23,13 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchBar(props) {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
-  const [timerId, setTimerId] = useState("");
   const handleSearchClick = () => {
     props.onSearchClick(searchTerm);
   };
 
   const handleTextFieldChange = (e) => {
     setSearchTerm(e.target.value);
-    //setSearchTimeout(() => props.handleOnSearch(e.target.value));
-    setTimeout(() => props.onSearchClick(e.target.value), 1000);
+    //setTimeout(() => props.onSearchClick(e.target.value), 5000);
   };
 
   // TODO: Tweak the text box to remove the outline
@@ -53,15 +51,17 @@ export default function SearchBar(props) {
         }}
       />
 
-      <Button
+      <ButtonSpinner
+        title={"Search"}
         variant="contained"
         size="large"
         color="primary"
         className={classes.buttonSearch}
         onClick={handleSearchClick}
+        isLoading={!props.isLoading}
       >
         Search
-      </Button>
+      </ButtonSpinner>
     </div>
   );
 }

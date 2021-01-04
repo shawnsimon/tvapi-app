@@ -1,10 +1,8 @@
 import { Fragment, useState, useEffect } from "react";
 import ShowItem from "./show-item";
-import { Box, Paper, Button } from "@material-ui/core";
+import { Box, Paper } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { makeStyles } from "@material-ui/core/styles";
-import ButtonCore from "../button/button-core";
-import TrueButton from "../button/button-core";
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(4),
@@ -21,6 +19,11 @@ export default function ShowList(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    props.setLoadingStatus(isLoaded);
+  }, [isLoaded, props]);
+
   useEffect(() => {
     setIsLoaded(false);
     fetch(`https://api.tvmaze.com/search/shows?q=${props.query}`)
